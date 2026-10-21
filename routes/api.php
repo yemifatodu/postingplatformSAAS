@@ -14,7 +14,6 @@ use App\Http\Controllers\Api\SocialAccountController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\Api\WorkspaceController;
-use App\\Http\\Controllers\\Api\\FirecrawlController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/uploads/{token}', [UploadController::class, 'store'])
@@ -99,10 +98,3 @@ Route::middleware(['auth:api', 'workspace.token', 'throttle:api'])->group(functi
     // Firecrawl Integration
     Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
 });
-    // Firecrawl Integration
-    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
-    // Firecrawl Integration
-    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
-
-});
-
