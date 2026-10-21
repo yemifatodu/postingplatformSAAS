@@ -144,4 +144,8 @@ return [
         'api_key' => env('GEMINI_API_KEY'),
     ],
 
+    'firecrawl' => [
+        'key' => env('FIRECRAWL_API_KEY'),
+    ],
+
 ];
