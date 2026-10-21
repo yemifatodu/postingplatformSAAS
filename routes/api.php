@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Api\ApiKeyController;
 use App\Http\Controllers\Api\AssetController;
+use App\Http\Controllers\Api\FirecrawlController;
 use App\Http\Controllers\Api\LabelController;
 use App\Http\Controllers\Api\PlatformController;
 use App\Http\Controllers\Api\PostController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Api\SocialAccountController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\Api\WorkspaceController;
+use App\\Http\\Controllers\\Api\\FirecrawlController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/uploads/{token}', [UploadController::class, 'store'])
@@ -93,4 +95,14 @@ Route::middleware(['auth:api', 'workspace.token', 'throttle:api'])->group(functi
     Route::get('/api-keys', [ApiKeyController::class, 'index'])->name('api.api-keys.index');
     Route::post('/api-keys', [ApiKeyController::class, 'store'])->name('api.api-keys.store');
     Route::delete('/api-keys/{apiToken}', [ApiKeyController::class, 'destroy'])->name('api.api-keys.destroy');
+
+    // Firecrawl Integration
+    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
 });
+    // Firecrawl Integration
+    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
+    // Firecrawl Integration
+    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->name('api.firecrawl.scrape');
+
+});
+
