@@ -1666,6 +1666,11 @@ const appendSignature = (
 const appendEmoji = (emoji: string, groupKey: string | null): void =>
     writeContent(groupKey, `${contentOf(groupKey)}${emoji}`);
 
+const appendImportedText = (text: string, groupKey: string | null): void => {
+    const current = contentOf(groupKey);
+    writeContent(groupKey, current.trim() ? `${current}\n\n${text}` : text);
+};
+
 const writeAssistantTarget = (text: string): void =>
     writeContent(sharedStep.value ? null : openGroupKey.value, text);
 
@@ -2680,6 +2685,7 @@ const close = (): void => emit('update:open', false);
                                     @open-unsplash="openUnsplash(null)"
                                     @upload="pickBaseFiles"
                                     @select-emoji="appendEmoji($event, null)"
+                                    @import-text="appendImportedText($event, null)"
                                     @select-signature="appendSignature($event, null)"
                                     @save-signature="saveSignature"
                                 />
@@ -3039,6 +3045,9 @@ const close = (): void => emit('update:open', false);
                                         @upload="pickGroupFiles(group)"
                                         @select-emoji="
                                             appendEmoji($event, group.key)
+                                        "
+                                        @import-text="
+                                            appendImportedText($event, group.key)
                                         "
                                         @select-signature="
                                             appendSignature($event, group.key)

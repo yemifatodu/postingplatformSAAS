@@ -19,6 +19,7 @@ use App\Http\Controllers\App\IdeaGenerateController;
 use App\Http\Controllers\App\IdeaStageController;
 use App\Http\Controllers\App\InsightsController;
 use App\Http\Controllers\App\LibraryTemplateController;
+use App\Http\Controllers\App\FirecrawlImportController;
 use App\Http\Controllers\App\LinkPreviewController;
 use App\Http\Controllers\App\LinkPreviewMediaController;
 use App\Http\Controllers\App\McpSettingsController;
@@ -234,6 +235,9 @@ Route::middleware(['auth', EnsureAccountReady::class, EnsureHasWorkspace::class]
     Route::get('posts/{post}/group', [PostGroupController::class, 'show'])->name('app.posts.group.show');
     Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('app.posts.destroy');
     Route::post('posts/{post}/duplicate', [PostController::class, 'duplicate'])->name('app.posts.duplicate');
+    Route::post('posts/firecrawl-import', FirecrawlImportController::class)
+        ->middleware('throttle:20,1')
+        ->name('app.posts.firecrawl-import');
     Route::post('posts/link-preview', LinkPreviewController::class)
         ->middleware('throttle:30,1')
         ->name('app.posts.link-preview');

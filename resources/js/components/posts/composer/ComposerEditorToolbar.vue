@@ -2,6 +2,7 @@
 import { IconMoodSmile, IconSignature } from '@tabler/icons-vue';
 import { ref } from 'vue';
 
+import FirecrawlImportPopover from '@/components/posts/composer/FirecrawlImportPopover.vue';
 import MediaSourceMenu from '@/components/posts/composer/MediaSourceMenu.vue';
 import EmojiPicker from '@/components/posts/EmojiPicker.vue';
 import SignaturePicker from '@/components/signatures/SignaturePicker.vue';
@@ -25,6 +26,7 @@ const emit = defineEmits<{
     (event: 'open-unsplash'): void;
     (event: 'upload'): void;
     (event: 'select-emoji', emoji: string): void;
+    (event: 'import-text', text: string): void;
     (
         event: 'select-signature',
         signature: { id: string; name: string; content: string },
@@ -87,6 +89,10 @@ const selectEmoji = (emoji: string): void => {
                 <EmojiPicker @select="selectEmoji" />
             </PopoverContent>
         </Popover>
+        <FirecrawlImportPopover
+            :test-id-prefix="testIdPrefix"
+            @import-text="emit('import-text', $event)"
+        />
         <Popover v-model:open="signaturesOpen">
             <PopoverTrigger as-child>
                 <button

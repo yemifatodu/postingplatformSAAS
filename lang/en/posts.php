@@ -39,6 +39,13 @@ return [
             'replace_with_media' => 'Replace link preview with media',
             'no_image' => 'This link has no image to use.',
         ],
+        'import_url' => [
+            'title' => 'Import from URL',
+            'placeholder' => 'https://example.com/article',
+            'import' => 'Import',
+            'importing' => 'Importing…',
+            'failed' => 'Could not import that page.',
+        ],
         'media_sources' => [
             'upload' => 'Upload from computer',
             'more' => 'More media sources',

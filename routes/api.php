@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ApiKeyController;
 use App\Http\Controllers\Api\ChannelInsightsController;
 use App\Http\Controllers\Api\ChannelPostingScheduleController;
 use App\Http\Controllers\Api\ChannelQueueController;
+use App\Http\Controllers\Api\FirecrawlController;
 use App\Http\Controllers\Api\IdeaController;
 use App\Http\Controllers\Api\IdeaStageController;
 use App\Http\Controllers\Api\LabelController;
@@ -29,6 +30,8 @@ Route::post('/uploads/{token}', [UploadController::class, 'store'])
     ->name('api.uploads.store');
 
 Route::middleware(['auth:api', 'workspace.token', 'throttle:api'])->group(function () {
+    Route::post('/firecrawl/scrape', [FirecrawlController::class, 'scrape'])->middleware('throttle:30,1')->name('api.firecrawl.scrape');
+
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('api.analytics.index');
     Route::get('/analytics/publications/{publication}', [AnalyticsController::class, 'showPublication'])
         ->whereUuid('publication')

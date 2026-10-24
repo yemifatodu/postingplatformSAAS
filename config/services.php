@@ -167,4 +167,9 @@ return [
         'client_secret' => env('BITLY_CLIENT_SECRET'),
         'redirect' => env('BITLY_CLIENT_REDIRECT'),
     ],
+
+    'firecrawl' => [
+        'key' => env('FIRECRAWL_API_KEY'),
+    ],
+
 ];
